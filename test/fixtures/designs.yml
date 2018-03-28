@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Design_name: MyString
+  Design_suitsize: MyString
+  Design_suittype: MyString
+
+two:
+  Design_name: MyString
+  Design_suitsize: MyString
+  Design_suittype: MyString

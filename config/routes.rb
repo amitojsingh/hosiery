@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :designs
   namespace :master do
     resources :varieties
   end

@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328085659) do
+ActiveRecord::Schema.define(version: 20180328090758) do
 
   create_table "colors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "colorname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "designs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "Design_name"
+    t.string "Design_suitsize"
+    t.string "Design_suittype"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

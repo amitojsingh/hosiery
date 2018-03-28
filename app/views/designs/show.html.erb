@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Design name:</strong>
+  <%= @design.Design_name %>
+</p>
+
+<p>
+  <strong>Design suitsize:</strong>
+  <%= @design.Design_suitsize %>
+</p>
+
+<p>
+  <strong>Design suittype:</strong>
+  <%= @design.Design_suittype %>
+</p>
+
+<%= link_to 'Edit', edit_design_path(@design) %> |
+<%= link_to 'Back', designs_path %>

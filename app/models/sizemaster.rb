@@ -1,0 +1,2 @@
+class Sizemaster < ApplicationRecord
+end

@@ -14,9 +14,9 @@
     <% @colors.each do |color| %>
       <tr>
         <td><%= color.colorname %></td>
-        <td><%= link_to 'Show', color %></td>
-        <td><%= link_to 'Edit', edit_color_path(color) %></td>
-        <td><%= link_to 'Destroy', color, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', smaster_color_url%></td>
+        <td><%= link_to 'Edit', edit_smaster_color_path(color) %></td>
+        <td><%= link_to 'Destroy', smaster_color, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Color', new_color_path %>
+<%= link_to 'New Color', new_smaster_color_path %>

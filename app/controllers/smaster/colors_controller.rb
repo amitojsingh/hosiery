@@ -1,10 +1,10 @@
-class ColorsController < ApplicationController
+class Smaster::ColorsController < ApplicationController
   before_action :set_color, only: [:show, :edit, :update, :destroy]
 
   # GET /colors
   # GET /colors.json
   def index
-    @colors = Color.all
+    @colors = Smaster::Color.all
   end
 
   # GET /colors/1
@@ -14,7 +14,7 @@ class ColorsController < ApplicationController
 
   # GET /colors/new
   def new
-    @color = Color.new
+    @color = Smaster::Color.new
   end
 
   # GET /colors/1/edit
@@ -24,7 +24,7 @@ class ColorsController < ApplicationController
   # POST /colors
   # POST /colors.json
   def create
-    @color = Color.new(color_params)
+    @color = Smaster::Color.new(color_params)
 
     respond_to do |format|
       if @color.save
@@ -64,11 +64,11 @@ class ColorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_color
-      @color = Color.find(params[:id])
+      @color = Smaster::Color.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def color_params
-      params.require(:color).permit(:colorname)
+      params.require(:smaster_color).permit(:colorname)
     end
 end

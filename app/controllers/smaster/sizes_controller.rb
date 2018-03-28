@@ -1,4 +1,4 @@
-class SizesController < ApplicationController
+class Smaster::SizesController < ApplicationController
   before_action :set_size, only: [:show, :edit, :update, :destroy]
 
   # GET /sizes

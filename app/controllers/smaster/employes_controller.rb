@@ -1,4 +1,4 @@
-class EmployesController < ApplicationController
+class Smaster::EmployesController < ApplicationController
   before_action :set_employe, only: [:show, :edit, :update, :destroy]
 
   # GET /employes

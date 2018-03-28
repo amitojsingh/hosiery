@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Suit type:</strong>
+  <%= @master_typenumber.suit_type %>
+</p>
+
+<p>
+  <strong>Start limit:</strong>
+  <%= @master_typenumber.start_limit %>
+</p>
+
+<p>
+  <strong>End limit:</strong>
+  <%= @master_typenumber.end_limit %>
+</p>
+
+<%= link_to 'Edit', edit_master_typenumber_path(@master_typenumber) %> |
+<%= link_to 'Back', master_typenumbers_path %>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Master Colors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Colorname</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @master_colors.each do |master_color| %>
+      <tr>
+        <td><%= master_color.colorname %></td>
+        <td><%= link_to 'Show', master_color %></td>
+        <td><%= link_to 'Edit', edit_master_color_path(master_color) %></td>
+        <td><%= link_to 'Destroy', master_color, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Master Color', new_master_color_path %>

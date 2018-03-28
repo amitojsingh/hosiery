@@ -1,0 +1,22 @@
+<%= form_with(model: master_color, local: true) do |form| %>
+  <% if master_color.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(master_color.errors.count, "error") %> prohibited this master_color from being saved:</h2>
+
+      <ul>
+      <% master_color.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :colorname %>
+    <%= form.text_field :colorname, id: :master_color_colorname %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

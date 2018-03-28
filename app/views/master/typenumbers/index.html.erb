@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Master Typenumbers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Suit type</th>
+      <th>Start limit</th>
+      <th>End limit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @master_typenumbers.each do |master_typenumber| %>
+      <tr>
+        <td><%= master_typenumber.suit_type %></td>
+        <td><%= master_typenumber.start_limit %></td>
+        <td><%= master_typenumber.end_limit %></td>
+        <td><%= link_to 'Show', master_typenumber %></td>
+        <td><%= link_to 'Edit', edit_master_typenumber_path(master_typenumber) %></td>
+        <td><%= link_to 'Destroy', master_typenumber, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Master Typenumber', new_master_typenumber_path %>

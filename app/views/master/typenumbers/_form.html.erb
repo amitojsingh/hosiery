@@ -1,0 +1,32 @@
+<%= form_with(model: master_typenumber, local: true) do |form| %>
+  <% if master_typenumber.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(master_typenumber.errors.count, "error") %> prohibited this master_typenumber from being saved:</h2>
+
+      <ul>
+      <% master_typenumber.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :suit_type %>
+    <%= form.text_field :suit_type, id: :master_typenumber_suit_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_limit %>
+    <%= form.number_field :start_limit, id: :master_typenumber_start_limit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_limit %>
+    <%= form.number_field :end_limit, id: :master_typenumber_end_limit %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

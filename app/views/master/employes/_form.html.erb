@@ -1,0 +1,32 @@
+<%= form_with(model: master_employe, local: true) do |form| %>
+  <% if master_employe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(master_employe.errors.count, "error") %> prohibited this master_employe from being saved:</h2>
+
+      <ul>
+      <% master_employe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :master_employe_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mobile %>
+    <%= form.text_field :mobile, id: :master_employe_mobile %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address, id: :master_employe_address %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

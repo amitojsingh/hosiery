@@ -1,0 +1,22 @@
+<%= form_with(model: master_variety, local: true) do |form| %>
+  <% if master_variety.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(master_variety.errors.count, "error") %> prohibited this master_variety from being saved:</h2>
+
+      <ul>
+      <% master_variety.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :variety %>
+    <%= form.text_field :variety, id: :master_variety_variety %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

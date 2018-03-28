@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  suit_type: MyString
+  start_limit: 1
+  end_limit: 1
+
+two:
+  suit_type: MyString
+  start_limit: 1
+  end_limit: 1

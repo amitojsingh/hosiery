@@ -1,0 +1,22 @@
+<%= form_with(model: master_size, local: true) do |form| %>
+  <% if master_size.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(master_size.errors.count, "error") %> prohibited this master_size from being saved:</h2>
+
+      <ul>
+      <% master_size.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :size %>
+    <%= form.text_field :size, id: :master_size_size %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

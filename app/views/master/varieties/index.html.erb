@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Master Varieties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Variety</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @master_varieties.each do |master_variety| %>
+      <tr>
+        <td><%= master_variety.variety %></td>
+        <td><%= link_to 'Show', master_variety %></td>
+        <td><%= link_to 'Edit', edit_master_variety_path(master_variety) %></td>
+        <td><%= link_to 'Destroy', master_variety, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Master Variety', new_master_variety_path %>

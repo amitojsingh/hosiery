@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Master Employes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mobile</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @master_employes.each do |master_employe| %>
+      <tr>
+        <td><%= master_employe.name %></td>
+        <td><%= master_employe.mobile %></td>
+        <td><%= master_employe.address %></td>
+        <td><%= link_to 'Show', master_employe %></td>
+        <td><%= link_to 'Edit', edit_master_employe_path(master_employe) %></td>
+        <td><%= link_to 'Destroy', master_employe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Master Employe', new_master_employe_path %>

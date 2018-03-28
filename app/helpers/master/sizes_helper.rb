@@ -1,0 +1,2 @@
+module Master::SizesHelper
+end

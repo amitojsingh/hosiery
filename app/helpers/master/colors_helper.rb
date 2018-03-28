@@ -1,0 +1,2 @@
+module Master::ColorsHelper
+end

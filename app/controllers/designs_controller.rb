@@ -21,7 +21,6 @@ class DesignsController < ApplicationController
 
   # GET /designs/1/edit
   def edit
-    @sizes=Master::Size.all
   end
 
   # POST /designs
@@ -72,7 +71,7 @@ class DesignsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def design_params
-       params[:design][:Design_suitsize] = params[:design][:Design_suitsize].join(',')
-      params.require(:design).permit(:Design_name, :Design_suitsize, :Design_suittype)
+       #params[:design][:Design_suitsize] = params[:design][:Design_suitsize].join(',')
+      params.require(:design).permit(:Design_name, :Design_suittype, Design_suitsize:[])
     end
 end

@@ -18,8 +18,8 @@
 
   <div class="field">
     <%= form.label :Design_suitsize %>
-   <% @sizes.each do |c| %>
-    <%= check_box_tag 'design[Design_suitsize][]',c.size%><%= c.size %>
+    <%= form.collection_check_boxes(:Design_suitsize ,Master::Size.all,:size,:size) do |b| %>
+    <%= b.label("data-value":b.value){b.check_box+b.text}%>
     <%end%>
   </div>
 

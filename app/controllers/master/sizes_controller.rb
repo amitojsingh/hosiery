@@ -54,6 +54,7 @@ class Master::SizesController < ApplicationController
   # DELETE /master/sizes/1
   # DELETE /master/sizes/1.json
   def destroy
+    puts "this is working"
     @master_size.destroy
     respond_to do |format|
       format.html { redirect_to master_sizes_url, notice: 'Size was successfully destroyed.' }

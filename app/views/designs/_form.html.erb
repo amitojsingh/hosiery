@@ -18,12 +18,14 @@
 
   <div class="field">
     <%= form.label :Design_suitsize %>
-    <%= form.text_field :Design_suitsize, id: :design_Design_suitsize %>
+   <% @sizes.each do |c| %>
+    <%= check_box_tag 'design[Design_suitsize][]',c.size%><%= c.size %>
+    <%end%>
   </div>
 
   <div class="field">
     <%= form.label :Design_suittype %>
-    <%= form.text_field :Design_suittype, id: :design_Design_suittype %>
+    <%= form.collection_select(:Design_suittype, Master::Variety.all, :variety,:variety, prompt: "Choose Suit type") %>
   </div>
 
   <div class="actions">

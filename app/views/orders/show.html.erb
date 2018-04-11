@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Design:</strong>
+  <%= @order.design %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @order.quantity %>
+</p>
+
+<% @order.orderquantities.each do |o|%>
+  <%= o.size %>
+  <%= o.color %>
+  <%= o.piece %>
+  <%= o.quantity %>
+  <%end%>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

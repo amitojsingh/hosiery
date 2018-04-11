@@ -17,13 +17,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :Design_suitsize %>
-    <%= form.collection_check_boxes(:Design_suitsize ,Master::Size.all,:size,:size) do |b| %>
-    <%= b.label("data-value":b.value){b.check_box+b.text}%>
-    <%end%>
-  </div>
-
-  <div class="field">
     <%= form.label :Design_suittype %>
     <%= form.collection_select(:Design_suittype, Master::Variety.all, :variety,:variety, prompt: "Choose Suit type") %>
   </div>

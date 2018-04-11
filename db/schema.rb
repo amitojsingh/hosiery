@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328090758) do
+ActiveRecord::Schema.define(version: 20180411180428) do
 
   create_table "colors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "colorname"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20180328090758) do
 
   create_table "designs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "Design_name"
-    t.string "Design_suitsize"
     t.string "Design_suittype"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -60,6 +59,7 @@ ActiveRecord::Schema.define(version: 20180328090758) do
     t.integer "end_limit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "size"
   end
 
   create_table "master_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -70,6 +70,23 @@ ActiveRecord::Schema.define(version: 20180328090758) do
 
   create_table "master_varieties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "variety"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orderquantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "size"
+    t.integer "quantity"
+    t.string "color"
+    t.string "piece"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "order_id"
+  end
+
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "design"
+    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

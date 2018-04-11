@@ -13,9 +13,12 @@
 
   <div class="field">
     <%= form.label :suit_type %>
-    <%= form.text_field :suit_type, id: :master_typenumber_suit_type %>
+    <%= form.collection_select(:suit_type, Master::Variety.all,:variety,:variety, prompt: "Select the type of suit") %>
   </div>
-
+  <div class="field">
+    <%= form.label :size %>
+    <%=form.collection_select(:size,Master::Size.all,:size,:size, prompt:"Choose Size")%>
+  </div>
   <div class="field">
     <%= form.label :start_limit %>
     <%= form.number_field :start_limit, id: :master_typenumber_start_limit %>

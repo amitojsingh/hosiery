@@ -72,6 +72,6 @@ class DesignsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def design_params
        #params[:design][:Design_suitsize] = params[:design][:Design_suitsize].join(',')
-      params.require(:design).permit(:Design_name, :Design_suittype, Design_suitsize:[])
+      params.require(:design).permit(:Design_name, :Design_suittype)
     end
 end

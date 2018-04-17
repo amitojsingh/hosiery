@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :serialnumber, only:[:create]
 
   # GET /orders
   # GET /orders.json
@@ -26,7 +27,6 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -64,6 +64,24 @@ class OrdersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def serialnumber
+      @subhash=params[:order][:orderquantities_attributes]
+      @subhash.each do |key,array|
+        @record=Master::Typenumber.where("suit_type LIKE ? And Size Like?", array[:piece],array[:size]).select('id','start_limit','end_limit')
+        @record.each do |o|
+          if o.start_limit<o.end_limit
+            quant = array[:quantity]
+              @startnumber= o.start_limit+1
+              @endnumber= o.start_limit + quant.to_i
+              o.start_limit=@endnumber
+              @sid=o.id
+          end
+          event=Master::Typenumber.find(@sid)
+          event.update_attributes(start_limit: @endnumber)
+        end
+        array[:number]= "#{@startnumber}-#{@endnumber}"
+        end
+      end
     def set_order
       @order = Order.find(params[:id])
     end

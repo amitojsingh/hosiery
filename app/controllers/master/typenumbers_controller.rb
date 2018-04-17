@@ -69,6 +69,6 @@ class Master::TypenumbersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def master_typenumber_params
-      params.require(:master_typenumber).permit(:suit_type, :start_limit, :end_limit)
+      params.require(:master_typenumber).permit(:suit_type,:size,:start_limit, :end_limit)
     end
 end

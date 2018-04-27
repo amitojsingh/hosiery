@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Master Parts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Suitpart</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @master_parts.each do |master_part| %>
+      <tr>
+        <td><%= master_part.suitpart %></td>
+        <td><%= link_to 'Show', master_part %></td>
+        <td><%= link_to 'Edit', edit_master_part_path(master_part) %></td>
+        <td><%= link_to 'Destroy', master_part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Master Part', new_master_part_path %>

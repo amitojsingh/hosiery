@@ -1,0 +1,22 @@
+<%= form_with(model: master_task, local: true) do |form| %>
+  <% if master_task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(master_task.errors.count, "error") %> prohibited this master_task from being saved:</h2>
+
+      <ul>
+      <% master_task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :taskname %>
+    <%= form.text_field :taskname, id: :master_task_taskname %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

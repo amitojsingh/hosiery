@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Master Tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Taskname</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @master_tasks.each do |master_task| %>
+      <tr>
+        <td><%= master_task.taskname %></td>
+        <td><%= link_to 'Show', master_task %></td>
+        <td><%= link_to 'Edit', edit_master_task_path(master_task) %></td>
+        <td><%= link_to 'Destroy', master_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Master Task', new_master_task_path %>

@@ -1,0 +1,2 @@
+module Master::TasksHelper
+end

@@ -1,0 +1,22 @@
+<%= form_with(model: master_part, local: true) do |form| %>
+  <% if master_part.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(master_part.errors.count, "error") %> prohibited this master_part from being saved:</h2>
+
+      <ul>
+      <% master_part.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :suitpart %>
+    <%= form.text_field :suitpart, id: :master_part_suitpart %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @master_yarn.Date %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @master_yarn.Color %>
+</p>
+
+<p>
+  <strong>Lotnumber:</strong>
+  <%= @master_yarn.Lotnumber %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @master_yarn.Quantity %>
+</p>
+
+<%= link_to 'Edit', edit_master_yarn_path(@master_yarn) %> |
+<%= link_to 'Back', master_yarns_path %>

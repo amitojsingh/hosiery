@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  namespace :master do
+    resources :parts
+  end
+  namespace :master do
+    resources :tasks
+  end
+  namespace :master do
+    resources :yarns
+  end
   root to: 'home#index'
   get 'home/index'
 

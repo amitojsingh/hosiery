@@ -1,0 +1,37 @@
+<%= form_with(model: master_yarn, local: true) do |form| %>
+  <% if master_yarn.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(master_yarn.errors.count, "error") %> prohibited this master_yarn from being saved:</h2>
+
+      <ul>
+      <% master_yarn.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Date %>
+    <%= form.date_select :Date, id: :master_yarn_Date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Color %>
+    <%=  form.collection_select(:Color, Master::Color.all,:colorname,:colorname, prompt: "Select color") %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Lotnumber %>
+    <%= form.text_field :Lotnumber, id: :master_yarn_Lotnumber %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Quantity %>
+    <%= form.text_field :Quantity, id: :master_yarn_Quantity %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

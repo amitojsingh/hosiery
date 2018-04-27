@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Taskname:</strong>
+  <%= @master_task.taskname %>
+</p>
+
+<%= link_to 'Edit', edit_master_task_path(@master_task) %> |
+<%= link_to 'Back', master_tasks_path %>

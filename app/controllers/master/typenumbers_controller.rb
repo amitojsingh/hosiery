@@ -1,5 +1,5 @@
 class Master::TypenumbersController < ApplicationController
-  before_action :set_master_typenumber, only: [:show, :edit, :update, :destroy]
+  before_action :set_master_typenumber, only: %i[show edit update destroy]
 
   # GET /master/typenumbers
   # GET /master/typenumbers.json
@@ -9,8 +9,7 @@ class Master::TypenumbersController < ApplicationController
 
   # GET /master/typenumbers/1
   # GET /master/typenumbers/1.json
-  def show
-  end
+  def show; end
 
   # GET /master/typenumbers/new
   def new
@@ -18,22 +17,36 @@ class Master::TypenumbersController < ApplicationController
   end
 
   # GET /master/typenumbers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /master/typenumbers
   # POST /master/typenumbers.json
   def create
-    @master_typenumber = Master::Typenumber.new(master_typenumber_params)
+    @this_typenumber = Master::Typenumber.new(master_typenumber_params)
+    @master_typenumbers = Master::Typenumber.all
+    @master_typenumbers.each do |m|
+      puts "start limit #{m.start_limit}"
+      if (@this_typenumber.start_limit.between?(m.start_limit, m.end_limit)) || (@this_typenumber.end_limit <=@this_typenumber.start_limit)
+        @bool = 1
+      end
+    end
 
+    @master_typenumber = @this_typenumber
     respond_to do |format|
-      if @master_typenumber.save
-        format.html { redirect_to @master_typenumber, notice: 'Typenumber was successfully created.' }
-        format.json { render :show, status: :created, location: @master_typenumber }
+      if @bool != 1
+        if @master_typenumber.save
+          format.html { redirect_to @master_typenumber, notice: 'Typenumber was successfully created.' }
+          format.json { render :show, status: :created, location: @master_typenumber }
+        else
+          format.html { render :new }
+          format.json { render json: @master_typenumber.errors, status: :unprocessable_entity }
+        end
       else
+        @master_typenumber.errors.add(:start_limit, 'is incorrect or taken')
+        @master_typenumber.errors.add(:end_limit, 'is incorrect')
         format.html { render :new }
         format.json { render json: @master_typenumber.errors, status: :unprocessable_entity }
-      end
+        end
     end
   end
 
@@ -62,13 +75,14 @@ class Master::TypenumbersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_master_typenumber
-      @master_typenumber = Master::Typenumber.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def master_typenumber_params
-      params.require(:master_typenumber).permit(:suit_type,:size,:start_limit, :end_limit)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_master_typenumber
+    @master_typenumber = Master::Typenumber.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def master_typenumber_params
+    params.require(:master_typenumber).permit(:suit_type, :size, :start_limit, :end_limit)
+  end
 end

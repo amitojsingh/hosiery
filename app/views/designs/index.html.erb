@@ -7,6 +7,8 @@
     <tr>
       <th>Design name</th>
       <th>Design suittype</th>
+      <th>Design Suit Size </th>
+      <th>Design Suit parts </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +18,9 @@
       <tr>
         <td><%= design.Design_name %></td>
         <td><%= design.Design_suittype %></td>
+        <td> <%= design.size %></td>
+        <td> <%= design.parts%></td>
+
         <td><%= link_to 'Show', design %></td>
         <td><%= link_to 'Edit', edit_design_path(design) %></td>
         <td><%= link_to 'Destroy', design, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -15,7 +15,6 @@ class DesignsController < ApplicationController
   # GET /designs/new
   def new
     @design = Design.new
-    @sizes = Master::Size.all
     @varities = Master::Variety.all
   end
 
@@ -72,6 +71,6 @@ class DesignsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def design_params
        #params[:design][:Design_suitsize] = params[:design][:Design_suitsize].join(',')
-      params.require(:design).permit(:Design_name, :Design_suittype)
+      params.require(:design).permit(:Design_name, :Design_suittype, :size, :parts => [])
     end
 end

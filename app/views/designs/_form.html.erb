@@ -21,6 +21,18 @@
     <%= form.collection_select(:Design_suittype, Master::Variety.all, :variety,:variety, prompt: "Choose Suit type") %>
   </div>
 
+  <div class= "field">
+    <%= form.label :size %>
+    <%= form.collection_select(:size, Master::Size.all,:size,:size, prompt: "Select the size")%>
+  </div>
+
+  <div class = "field">
+    <%= form.label :parts %>
+    <%= collection_check_boxes(:design, :parts, Master::Part.all, :suitpart  ,:suitpart) do |b|%>
+    <%= b.label { b.check_box + b.text}%>
+    <%end%>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

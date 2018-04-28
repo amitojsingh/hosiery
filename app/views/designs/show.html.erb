@@ -9,6 +9,20 @@
   <strong>Design suittype:</strong>
   <%= @design.Design_suittype %>
 </p>
+<p>
+  <strong>
+    Design suit Size:
+  </strong>
+  <%= @design.size%>
+</p>
 
-<%= link_to 'Edit', edit_design_path(@design) %> |
+<p>
+  <strong>
+    Desing Suit Parts
+  </strong>
+  <%=@design.parts%>
+</p>
+
+<%= link_to 'Edit', edit_design_path(@design) %>
+|
 <%= link_to 'Back', designs_path %>

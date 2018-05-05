@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  post 'orders/colordata', to: 'orders#colordata'
   namespace :master do
     resources :parts
   end

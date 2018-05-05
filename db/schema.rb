@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180428151852) do
+ActiveRecord::Schema.define(version: 20180429123224) do
 
   create_table "colors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "colorname"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20180428151852) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "size"
-    t.text "parts",array:true
+    t.text "parts"
   end
 
   create_table "employes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -97,22 +97,15 @@ ActiveRecord::Schema.define(version: 20180428151852) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "orderquantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "size"
-    t.integer "quantity"
-    t.string "color"
-    t.string "piece"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "order_id"
-    t.string "number"
-  end
-
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "design"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "color"
+    t.string "lotnumber"
+    t.float "consumption", limit: 24
+    t.string "number"
   end
 
 end

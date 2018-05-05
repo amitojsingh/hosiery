@@ -16,14 +16,26 @@
     <%= form.collection_select(:design, Design.all,:Design_name,:Design_name,id: :order_design,prompt: "Choose the design")%>
   </div>
 
+  <div class= "field">
+    <%= form.label :color %>
+    <%= form.collection_select(:color, Master::Color.all,:colorname,:colorname, prompt: "choose the color",class: "colors")%>
+  </div>
+
   <div class="field">
     <%= form.label :quantity %>
     <%= form.number_field :quantity, id: :order_quantity %>
   </div>
 
-    <div class='links'>
-      <%= link_to_add_association 'add size', form, :orderquantities, form_name: 'form'%>
-    </div>
+  <div class="field">
+    <%= form.label :lotnumber %>
+    <%= form.collection_select(:lotnumber, Master::Yarn.all, :Lotnumber,:Lotnumber,prompt: "Select the Yarn")%>
+  </div>
+
+  <div class= "field">
+    <%= form.label :consumption %>
+    <%= form.text_field :consumption, id: :order_consumption%>
+  </div>
+
   </div>
 
   <div class="actions">

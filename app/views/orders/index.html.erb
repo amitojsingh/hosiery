@@ -7,6 +7,10 @@
     <tr>
       <th>Design</th>
       <th>Quantity</th>
+      <th>Color</th>
+      <th>Lot Number </th>
+      <th>Estimated Consumption</th>
+      <th>Serial number</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +20,10 @@
       <tr>
         <td><%= order.design %></td>
         <td><%= order.quantity %></td>
+        <td><%= order.color %></td>
+        <td><%= order.lotnumber %></td>
+        <td><%= order.consumption %></td>
+        <td><%= order.number%></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>

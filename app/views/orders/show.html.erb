@@ -10,13 +10,25 @@
   <%= @order.quantity %>
 </p>
 
-<% @order.orderquantities.each do |o|%>
-  <%= o.size %>
-  <%= o.color %>
-  <%= o.piece %>
-  <%= o.quantity %>
-  <%= o.number %>
-  <%end%>
+<p>
+  <strong>Color:</strong>
+  <%= @order.color%>
+</p>
+
+<p>
+  <strong>Lotnumber:</strong>
+  <%= @order.lotnumber%>
+</p>
+
+<p>
+  <strong>Estimated consumption</strong>
+  <%= @order.consumption %>
+</p>
+
+<p>
+  <strong> Serial Number</strong>
+  <%= @order.number %>
+</p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

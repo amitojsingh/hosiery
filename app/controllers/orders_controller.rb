@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :serialnumber, only:[:create]
+  before_action :set_order, only: %i[show edit update destroy]
+  before_action :serialnumber, only: [:create]
 
   # GET /orders
   # GET /orders.json
@@ -10,30 +10,33 @@ class OrdersController < ApplicationController
 
   # GET /orders/1
   # GET /orders/1.json
-  def show
-  end
+  def show; end
 
   # GET /orders/new
   def new
     @order = Order.new
-    @orderquantities=@order.orderquantities.build
   end
 
   # GET /orders/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /orders
   # POST /orders.json
   def create
     @order = Order.new(order_params)
     respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
+      if @order.number == '0'
+        @order.errors.add(:quantitiy, 'overflow')
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
+      else
+        if @order.save
+          format.html { redirect_to @order, notice: 'Order was successfully created.' }
+          format.json { render :show, status: :created, location: @order }
+        else
+          format.html { render :new }
+          format.json { render json: @order.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -62,32 +65,47 @@ class OrdersController < ApplicationController
     end
   end
 
+  def colordata
+    @color
+    request.POST.each do |key, value|
+      @color = value
+    end
+    @lotdetail= Master::Yarn.where('color like?', @color)
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def serialnumber
-      @subhash=params[:order][:orderquantities_attributes]
-      @subhash.each do |key,array|
-        @record=Master::Typenumber.where("suit_type LIKE ? And Size Like?", array[:piece],array[:size]).select('id','start_limit','end_limit')
-        @record.each do |o|
-          if o.start_limit<o.end_limit
-            quant = array[:quantity]
-              @startnumber= o.start_limit+1
-              @endnumber= o.start_limit + quant.to_i
-              o.start_limit=@endnumber
-              @sid=o.id
-          end
-          event=Master::Typenumber.find(@sid)
-          event.update_attributes(start_limit: @endnumber)
-        end
-        array[:number]= "#{@startnumber}-#{@endnumber}"
-        end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def serialnumber
+    @exactquantity = params[:order]
+    @detail = Design.where('Design_name Like ?', @exactquantity[:design])
+    @detail.each do |value|
+      @suit = value.Design_suittype
+      @size = value.size
+    end
+    @record = Master::Typenumber.where('suit_type LIKE ? And Size Like?', @suit, @size).select('id', 'start_limit', 'end_limit')
+    @record.each do |o|
+      if o.start_limit < o.end_limit
+        quant = @exactquantity[:quantity]
+        @startnumber = o.start_limit + 1
+        @endnumber = o.start_limit + quant.to_i
+        o.start_limit = @endnumber
+        @sid = o.id
+        event = Master::Typenumber.find(@sid)
+        event.update_attributes(start_limit: @endnumber)
+        params[:order][:number] = "#{@startnumber}-#{@endnumber}"
+      else
+        params[:order][:number] = '0'
       end
-    def set_order
-      @order = Order.find(params[:id])
+    end
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:design, :quantity,orderquantities_attributes: Orderquantity.attribute_names.map(&:to_sym).push(:_destroy))
-    end
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.require(:order).permit(:design, :quantity, :color, :lotnumber, :consumption, :number)
+  end
 end

@@ -26,7 +26,7 @@ class Master::TypenumbersController < ApplicationController
     @master_typenumbers = Master::Typenumber.all
     @master_typenumbers.each do |m|
       puts "start limit #{m.start_limit}"
-      if (@this_typenumber.start_limit.between?(m.start_limit, m.end_limit)) || (@this_typenumber.end_limit <=@this_typenumber.start_limit)
+      if @this_typenumber.start_limit.between?(m.start_limit, m.end_limit) || (@this_typenumber.end_limit <= @this_typenumber.start_limit) || @this_typenumber.end_limit.between?(m.start_limit, m.end_limit)
         @bool = 1
       end
     end
@@ -42,7 +42,7 @@ class Master::TypenumbersController < ApplicationController
           format.json { render json: @master_typenumber.errors, status: :unprocessable_entity }
         end
       else
-        @master_typenumber.errors.add(:start_limit, 'is incorrect or taken')
+        @master_typenumber.errors.add(:start_limit, 'is incorrect or already taken')
         @master_typenumber.errors.add(:end_limit, 'is incorrect')
         format.html { render :new }
         format.json { render json: @master_typenumber.errors, status: :unprocessable_entity }

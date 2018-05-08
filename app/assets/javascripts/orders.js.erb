@@ -3,14 +3,12 @@
 //# You can use CoffeeScript in this file: http://coffeescript.org/
  $(document).on('turbolinks:load', function() {
   $("select[name='order[color]']").change(function(){
-    // alert($(this).val());
      $.ajax({
        url: "colordata",
        type: "post",
        data:{
          "color": $(this).val()
        },
-       dataType: JSON,
        success: function(data){
        }
      });

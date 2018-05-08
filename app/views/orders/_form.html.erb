@@ -1,4 +1,4 @@
-<%= form_with(model: order, local: true) do |form| %>
+<%= form_with(model: order, local:true) do |form| %>
   <% if order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -26,9 +26,7 @@
     <%= form.number_field :quantity, id: :order_quantity %>
   </div>
 
-  <div class="field">
-    <%= form.label :lotnumber %>
-    <%= form.collection_select(:lotnumber, Master::Yarn.all, :Lotnumber,:Lotnumber,prompt: "Select the Yarn")%>
+  <div class="lot">
   </div>
 
   <div class= "field">

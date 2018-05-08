@@ -1,0 +1,4 @@
+<%= fields_for :order do |f|%>
+<%= f.label :lotnumber %>
+<%= f.collection_select(:lotnumber, @lotdetail.all.collect{|t| [t.Lotnumber, "#{t.Lotnumber}/#{t.Quantity}"]}, :first,:last,prompt: "Select the Yarn")%>
+<%end%>

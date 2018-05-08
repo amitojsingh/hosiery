@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
+    puts 'Index is working'
     @orders = Order.all
   end
 
@@ -23,8 +24,8 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
     respond_to do |format|
+      @order = Order.new(order_params)
       if @order.number == '0'
         @order.errors.add(:quantitiy, 'overflow')
         format.html { render :new }
@@ -33,6 +34,16 @@ class OrdersController < ApplicationController
         if @order.save
           format.html { redirect_to @order, notice: 'Order was successfully created.' }
           format.json { render :show, status: :created, location: @order }
+          @lotdetail = Master::Yarn.where('Lotnumber LIKE ?', @order[:lotnumber])
+          @lotdetail.each do |q|
+            @total = q.Quantity
+            @lid = q.id
+          end
+          if @order[:consumption] < @total
+            quant = Master::Yarn.find(@lid)
+            upnumber = @total.to_f - @exactquantity[:consumption].to_f
+            quant.update_attributes(Quantity: upnumber)
+          end
         else
           format.html { render :new }
           format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -66,11 +77,17 @@ class OrdersController < ApplicationController
   end
 
   def colordata
-    @color
-    request.POST.each do |key, value|
+    request.POST.each do |_key, value|
       @color = value
     end
-    @lotdetail= Master::Yarn.where('color like?', @color)
+    @lotdetail = Master::Yarn.where('color like?', @color)
+    @lotdetail.each do |v|
+      puts "value= #{v[:Lotnumber]}"
+    end
+    respond_to do |format|
+      puts 'respond to in color data is working'
+      format.js { render layout: false }
+    end
   end
 
   private
@@ -98,14 +115,16 @@ class OrdersController < ApplicationController
         params[:order][:number] = '0'
       end
     end
-    end
+  end
 
   def set_order
+    puts 'set order is working'
     @order = Order.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
+    puts 'order_params are working  '
     params.require(:order).permit(:design, :quantity, :color, :lotnumber, :consumption, :number)
   end
 end

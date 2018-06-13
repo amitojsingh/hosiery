@@ -1,0 +1,2 @@
+module Manufacturing::KnittingsHelper
+end

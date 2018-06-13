@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :manufacturing do
+    resources :knittings
+  end
   post 'orders/colordata', to: 'orders#colordata'
+  post 'manufacturing/knittings/orderfind', to: 'manufacturing/knittings#orderfind'
   namespace :master do
     resources :parts
   end

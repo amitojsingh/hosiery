@@ -1,0 +1,23 @@
+<%=fields_for :manufacturing_knitting do |k|%>
+<%= @orderdetail.design%>
+<%= @orderdetail.color %>
+
+<%@parsed.each do |part|%>
+<div class="field">
+  <%= fields_for :worker do |f|%>
+<%= part%>
+  <%= f.collection_select(part, Master::Employe.all,:name,:name, prompt: "Select the worker") %>
+</div>
+<% end %>
+<% end %>
+<div class="field">
+  <%= k.label :quantity %>
+  <%= k.number_field :quantity, id: :manufacturing_knitting_quantity %>
+</div>
+
+
+<div class="field">
+  <%= k.label :serial %>
+  <%= k.text_field :serial, id: :manufacturing_knitting_serial %>
+</div>
+<%end%>

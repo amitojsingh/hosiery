@@ -1,0 +1,30 @@
+<%= form_with(model: manufacturing_knitting, local: true) do |form| %>
+  <% if manufacturing_knitting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(manufacturing_knitting.errors.count, "error") %> prohibited this manufacturing_knitting from being saved:</h2>
+
+      <ul>
+      <% manufacturing_knitting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ordernumber %>
+    <%= form.collection_select(:ordernumber,Order.all.collect{ |t|[t.id, "#{t.id}/#{t.design}"]},:first, :last, prompt: "Select the Order number") %>
+  </div>
+  <div class = "detail">
+  </div>
+
+  
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status, id: :manufacturing_knitting_status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

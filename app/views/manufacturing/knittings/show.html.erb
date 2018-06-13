@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ordernumber:</strong>
+  <%= @manufacturing_knitting.ordernumber %>
+</p>
+
+<p>
+  <strong>Parts:</strong>
+  <%= @manufacturing_knitting.parts %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @manufacturing_knitting.quantity %>
+</p>
+
+<p>
+  <strong>Worker:</strong>
+  <%= @manufacturing_knitting.worker %>
+</p>
+
+<p>
+  <strong>Serial:</strong>
+  <%= @manufacturing_knitting.serial %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @manufacturing_knitting.status %>
+</p>
+
+<%= link_to 'Edit', edit_manufacturing_knitting_path(@manufacturing_knitting) %> |
+<%= link_to 'Back', manufacturing_knittings_path %>
